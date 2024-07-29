@@ -32,6 +32,12 @@ This project is an augmented reality (AR) simulator for Magic: The Gathering wit
 2. Define the deck in `decks/`.
 3. Update `main.py` to include the new AI opponent.
 
+## Trello
+
+Link: https://trello.com/invite/b/66a536c78d1cf3273c5dba75/ATTIf1ad4c0dcaf06035bef784fcde37d0e7F4CCB949/mtg-augmented-reality-project
+
+You can also request the link as well, just DM.
+
 ## License
 
 MIT License
