@@ -1,31 +1,15 @@
-# game_engine/game_loop.py
+# game_loop.py
 
-from ai_opponents.jiwon_ai import JiwonAI
+from game_logic import GameLogic
 
-def game_loop():
-    jiwon = JiwonAI()
-    jiwon.setup_game()
+class GameLoop:
+    def __init__(self, players):
+        self.game_logic = GameLogic(players)
 
-    # Placeholder for the player's turn setup
-    player_turn = True
-
-    while True:
-        if player_turn:
-            print("Player's turn")
-            # Implement player's turn logic
-            player_turn = False
-        else:
-            print("Jiwon's turn")
-            jiwon.play_turn()
-            player_turn = True
-
-        # Add logic to check for end of game condition
-        if check_game_end(jiwon):
-            break
-
-def check_game_end(opponent):
-    # Placeholder logic to check for game end conditions
-    return False  # Keep game running
-
-if __name__ == "__main__":
-    game_loop()
+    def run(self):
+        self.game_logic.start_game()
+        while True:
+            winner = self.game_logic.check_winner()
+            if winner:
+                break
+            self.game_logic.next_turn()

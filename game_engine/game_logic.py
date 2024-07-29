@@ -1,15 +1,27 @@
-class Game:
-    def __init__(self, ai_opponent):
-        self.ai_opponent = ai_opponent
-        self.player_life_total = 40
+# game_logic.py
 
-    def is_over(self):
-        return self.player_life_total <= 0 or self.ai_opponent.life_total <= 0
+class GameLogic:
+    def __init__(self, players):
+        self.players = players
+        self.turn = 0
 
-    def player_turn(self):
-        # Implement player turn logic
-        print("Player's turn")
+    def start_game(self):
+        print("Starting the game...")
+        # Initialize game state
+        for player in self.players:
+            player.draw_initial_hand()
 
-    def ai_turn(self):
-        print("AI's turn")
-        self.ai_opponent.take_turn()
+    def next_turn(self):
+        self.turn = (self.turn + 1) % len(self.players)
+        current_player = self.players[self.turn]
+        print(f"It is now {current_player.name}'s turn.")
+        # Execute turn logic for current player
+        current_player.take_turn()
+
+    def check_winner(self):
+        # Check if there is a winner
+        for player in self.players:
+            if player.has_won():
+                print(f"{player.name} has won the game!")
+                return player
+        return None
