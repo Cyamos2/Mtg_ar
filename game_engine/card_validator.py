@@ -1,10 +1,11 @@
-# card_validator.py
+# game_engine/card_validator.py
+
+import json
 
 class CardValidator:
-    def __init__(self, card_database):
-        self.card_database = card_database
+    def __init__(self, card_database_path):
+        with open(card_database_path, 'r', encoding='utf-8') as f:
+            self.card_database = json.load(f)
 
-    def validate_cards(self, scanned_deck):
-        valid_cards = [card for card in scanned_deck if card in self.card_database]
-        invalid_cards = [card for card in scanned_deck if card not in self.card_database]
-        return valid_cards, invalid_cards
+    def validate_card(self, card_name):
+        return card_name in self.card_database

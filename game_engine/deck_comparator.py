@@ -1,11 +1,8 @@
-# deck_comparator.py
+# game_engine/deck_comparator.py
 
 class DeckComparator:
-    def __init__(self, predefined_deck):
-        self.predefined_deck = predefined_deck
-
-    def compare_decks(self, scanned_deck):
-        matched = [card for card in scanned_deck if card in self.predefined_deck]
-        missing = [card for card in self.predefined_deck if card not in scanned_deck]
-        extras = [card for card in scanned_deck if card not in self.predefined_deck]
-        return matched, missing, extras
+    def compare_decks(self, deck1, deck2):
+        common_cards = set(deck1) & set(deck2)
+        unique_to_deck1 = set(deck1) - set(deck2)
+        unique_to_deck2 = set(deck2) - set(deck1)
+        return common_cards, unique_to_deck1, unique_to_deck2
